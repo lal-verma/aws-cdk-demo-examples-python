@@ -1,0 +1,5 @@
+.pytest_cache
+.venv
+*.egg-info
+.DS_Store
+first-cdk-app

@@ -1,0 +1,134 @@
+# name: test_function_snapshot
+  dict({
+    'Parameters': dict({
+      'BootstrapVersion': dict({
+        'Default': '/cdk-bootstrap/hnb659fds/version',
+        'Description': 'Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]',
+        'Type': 'AWS::SSM::Parameter::Value<String>',
+      }),
+    }),
+    'Resources': dict({
+      'tododbA0F8A3AC': dict({
+        'DeletionPolicy': 'Delete',
+        'Properties': dict({
+          'AttributeDefinitions': list([
+            dict({
+              'AttributeName': 'id',
+              'AttributeType': 'S',
+            }),
+          ]),
+          'KeySchema': list([
+            dict({
+              'AttributeName': 'id',
+              'KeyType': 'HASH',
+            }),
+          ]),
+          'ProvisionedThroughput': dict({
+            'ReadCapacityUnits': 5,
+            'WriteCapacityUnits': 5,
+          }),
+          'Tags': list([
+            dict({
+              'Key': 'microservice',
+              'Value': 'todo-service',
+            }),
+          ]),
+        }),
+        'Type': 'AWS::DynamoDB::Table',
+        'UpdateReplacePolicy': 'Delete',
+      }),
+      'todoservice099F38C7': dict({
+        'DependsOn': list([
+          'todoserviceServiceRole296BAF91',
+        ]),
+        'Properties': dict({
+          'Code': dict({
+            'S3Bucket': dict({
+              'Fn::Sub': 'cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}',
+            }),
+            'S3Key': '4ae2188b6aa47f4a781720f62970a579a00d1e9856aef247014d2488e14d790e.zip',
+          }),
+          'Handler': 'todo_service.handler',
+          'Role': dict({
+            'Fn::GetAtt': list([
+              'todoserviceServiceRole296BAF91',
+              'Arn',
+            ]),
+          }),
+          'Runtime': 'python3.9',
+          'Tags': list([
+            dict({
+              'Key': 'microservice',
+              'Value': 'todo-service',
+            }),
+          ]),
+        }),
+        'Type': 'AWS::Lambda::Function',
+      }),
+      'todoserviceServiceRole296BAF91': dict({
+        'Properties': dict({
+          'AssumeRolePolicyDocument': dict({
+            'Statement': list([
+              dict({
+                'Action': 'sts:AssumeRole',
+                'Effect': 'Allow',
+                'Principal': dict({
+                  'Service': 'lambda.amazonaws.com',
+                }),
+              }),
+            ]),
+            'Version': '2012-10-17',
+          }),
+          'ManagedPolicyArns': list([
+            dict({
+              'Fn::Join': list([
+                '',
+                list([
+                  'arn:',
+                  dict({
+                    'Ref': 'AWS::Partition',
+                  }),
+                  ':iam::aws:policy/service-role/AWSLambdaBasicExecutionRole',
+                ]),
+              ]),
+            }),
+          ]),
+          'Tags': list([
+            dict({
+              'Key': 'microservice',
+              'Value': 'todo-service',
+            }),
+          ]),
+        }),
+        'Type': 'AWS::IAM::Role',
+      }),
+    }),
+    'Rules': dict({
+      'CheckBootstrapVersion': dict({
+        'Assertions': list([
+          dict({
+            'Assert': dict({
+              'Fn::Not': list([
+                dict({
+                  'Fn::Contains': list([
+                    list([
+                      '1',
+                      '2',
+                      '3',
+                      '4',
+                      '5',
+                    ]),
+                    dict({
+                      'Ref': 'BootstrapVersion',
+                    }),
+                  ]),
+                }),
+              ]),
+            }),
+            'AssertDescription': "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+          }),
+        ]),
+      }),
+    }),
+  })
+# ---
