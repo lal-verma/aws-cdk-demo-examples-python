@@ -4,10 +4,8 @@ import aws_cdk as cdk
 
 app = cdk.App()
 
-
-from sample_cdk_app_python.tags.tags_demo import (TagsDemoStack_1)
-TagsDemoStack_1(app, "TagsDemoStack1")
-
+from sample_cdk_app_python.resources.removal_policy_demo import (RemovalPolicyDemoStack)
+RemovalPolicyDemoStack(app, "RemovalPolicyDemoStack")
 
 
 
@@ -35,6 +33,13 @@ TagsDemoStack_1(app, "TagsDemoStack1")
 
 
 
+
+#uncomment the following block to enable Resource Referece Different Stack Demo
+""" 
+from sample_cdk_app_python.resources.rr_different_stack_demo import (TodoDatabaseStack, TodoServiceStack)
+todo_db_stack = TodoDatabaseStack(app, "TodoDatabaseStack")
+todo_service_stack = TodoServiceStack(app, "TodoServiceStack", todo_db_stack.todo_db)
+ """
 
 
 #uncomment the following block to enable ContextAppConfigDemoStack

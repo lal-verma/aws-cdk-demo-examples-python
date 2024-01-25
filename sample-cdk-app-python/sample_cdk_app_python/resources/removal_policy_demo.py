@@ -12,11 +12,11 @@ class RemovalPolicyDemoStack(Stack):
         super().__init__(scope, construct_id)
 
         #create an s3 bucket
-        s3.Bucket(self, 'my-bucket-removal-policy', 
+        s3.Bucket(self, 'my-bucket-removal-policy',
                   removal_policy=RemovalPolicy.DESTROY,
-                  auto_delete_objects=True)
+                  auto_delete_objects=True) 
 
         #create a dynamodb table
         dynamodb.Table(self, 'my-table-removal-policy', 
                        partition_key=dynamodb.Attribute(name='id', type=dynamodb.AttributeType.STRING),
-                       removal_policy=RemovalPolicy.DESTROY,)
+                       removal_policy=RemovalPolicy.DESTROY)
