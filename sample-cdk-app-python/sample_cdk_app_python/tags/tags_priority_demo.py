@@ -23,4 +23,4 @@ class TagsPriorityDemoStack(Stack):
            
         Tags.of(self).add('microservice', 'todo-service')
 
-        Tags.of(todo_service_function).remove('microservice', 'todo-service-v2', priority=90);    
+        Tags.of(todo_service_function).add('microservice', 'todo-service-v2', priority=90);    

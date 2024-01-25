@@ -4,35 +4,35 @@ import aws_cdk as cdk
 
 app = cdk.App()
 
-from sample_cdk_app_python.resources.removal_policy_demo import (RemovalPolicyDemoStack)
+from sample_cdk_app_python.tags.tags_priority_demo import TagsPriorityDemoStack
+TagsPriorityDemoStack(app, "TagsPriorityDemoStack")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#uncomment the following block to enable Resource removal demo
+""" from sample_cdk_app_python.resources.removal_policy_demo import (RemovalPolicyDemoStack)
 RemovalPolicyDemoStack(app, "RemovalPolicyDemoStack")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ """
 
 #uncomment the following block to enable Resource Referece Different Stack Demo
 """ 

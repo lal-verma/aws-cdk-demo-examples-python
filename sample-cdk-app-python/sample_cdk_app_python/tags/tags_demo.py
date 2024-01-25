@@ -22,7 +22,7 @@ class TagsDemoStack_1(Stack):
                         handler='todo_service.handler',
                         code=_lambda.Code.from_asset("../sample-lambda-functions/"),)
            
-        Tags.of(self).add('microservice', 'todo-service')
+        
 
 
 class TagsDemoStack_2(Stack):
