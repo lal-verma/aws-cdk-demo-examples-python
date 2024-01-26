@@ -4,30 +4,21 @@ import aws_cdk as cdk
 
 app = cdk.App()
 
-from sample_cdk_app_python.tags.tags_priority_demo import TagsPriorityDemoStack
+from sample_cdk_app_python.aspects.aspects_demo import (AspectsDemoStack)
+AspectsDemoStack(app, "AspectsDemoStack") 
+
+
+
+#uncomment the following block to enable Docker Assets Demo
+""" 
+from sample_cdk_app_python.assets.docker_assets_demo import DockerAssetsDemoStack
+DockerAssetsDemoStack(app, "DockerAssetsDemoStack")
+
+ """
+#uncomment the following block to enable Tags Priority Demo
+""" from sample_cdk_app_python.tags.tags_priority_demo import TagsPriorityDemoStack
 TagsPriorityDemoStack(app, "TagsPriorityDemoStack")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ """
 
 #uncomment the following block to enable Resource removal demo
 """ from sample_cdk_app_python.resources.removal_policy_demo import (RemovalPolicyDemoStack)
@@ -51,7 +42,7 @@ ContextAppConfigDemoStack(app, "ContextAppConfigDemoStack",
  """
 
 #uncomment the following block to enable ContextCacheDemoStack
-""" from sample_cdk_app_python.context.ContextCacheDemo import (ContextCacheDemoStack)
+""" from sample_cdk_app_python.context.context_cache_demo import (ContextCacheDemoStack)
 ContextCacheDemoStack(app, "ContextCacheDemoStack", 
                       env=cdk.Environment(
                           account=os.getenv('CDK_DEFAULT_ACCOUNT'), 

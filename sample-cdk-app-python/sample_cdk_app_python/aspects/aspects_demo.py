@@ -21,11 +21,12 @@ class AspectsDemoStack(Stack):
             removal_policy=RemovalPolicy.DESTROY)
         
         s3.Bucket(self, 'test-bucket-2', 
+            versioned= True,
             auto_delete_objects=True,
             removal_policy=RemovalPolicy.DESTROY)
 
         s3.Bucket(self, 'test-bucket-3', 
-            versioned=False,
+            versioned= True,
             auto_delete_objects=True,
             removal_policy=RemovalPolicy.DESTROY)
         
@@ -33,7 +34,7 @@ class AspectsDemoStack(Stack):
                          partition_key=dynamodb.Attribute(name='id', type=dynamodb.AttributeType.STRING) 
                          )
 
-        dynamodb.Table(self, 'test-table-2',
+        dynamodb.TableV2(self, 'test-table-2',
                          partition_key=dynamodb.Attribute(name='id', type=dynamodb.AttributeType.STRING) 
                          )
         
