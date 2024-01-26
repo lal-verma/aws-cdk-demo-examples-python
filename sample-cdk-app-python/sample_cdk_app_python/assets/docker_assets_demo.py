@@ -15,7 +15,7 @@ class DockerAssetsDemoStack(Stack):
                                                     memory_limit_mib=1024,cpu=512)
 
         
-        ecr_assets.DockerImageAsset(self, 'todo-container-image',
+        docker_asset = ecr_assets.DockerImageAsset(self, 'todo-container-image',
                                     directory='../sample-container-app',
                                     asset_name='todo-app-container-image')
     
