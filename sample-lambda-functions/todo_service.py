@@ -12,21 +12,27 @@ def handler(event, context):
             response = table.scan()
             message = json.dumps(response['Items'])
     elif (event['httpMethod'] == 'POST'): 
+            input_todo_item = event['body'] 
+            if isinstance(event['body'], str):
+                input_todo_item = json.loads(event['body'])
             table = dynamodb.Table(todo_db_name)
             response = table.put_item(
                 Item={
-                    'id': event['body']['id'],
-                    'title': event['body']['title'],
-                    'description': event['body']['description'],
-                    'status': event['body']['status']
+                    'id': input_todo_item['id'],
+                    'title': input_todo_item['title'],
+                    'description': input_todo_item['description'],
+                    'status': input_todo_item['status']
                 }
             )
             message = json.dumps(response)
     elif (event['httpMethod'] == 'DELETE'):    
             table = dynamodb.Table(todo_db_name)
+            input_todo_item = event['body'] 
+            if isinstance(event['body'], str):
+                input_todo_item = json.loads(event['body'])
             response = table.delete_item(
                 Key={
-                    'id': event['body']['id']
+                    'id':input_todo_item['id']
                 }
             )
             message = json.dumps(response)

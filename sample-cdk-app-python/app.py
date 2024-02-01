@@ -4,10 +4,30 @@ import aws_cdk as cdk
 
 app = cdk.App()
 
-from sample_cdk_app_python.aspects.aspects_demo import (AspectsDemoStack)
+from sample_cdk_app_python.codewhisperer.codewhisperer_demo import (TodoApplicationStack)
+TodoApplicationStack(app, "TodoApplicationStack")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#uncomment the following block to enable Aspects demo
+""" from sample_cdk_app_python.aspects.aspects_demo import (AspectsDemoStack)
 AspectsDemoStack(app, "AspectsDemoStack") 
-
-
+ """
 
 #uncomment the following block to enable Docker Assets Demo
 """ 
